@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumyadeep Das · Software Engineer</title>
+    <meta name="description" content="Full‑Stack Engineer specializing in .NET Core, Angular, and AI‑powered applications.">
+    <!-- Fonts (optional, keep your system fonts) -->
+    <style>
+        /* ----- CSS RESET & VARIABLES ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --text-light: #475569;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --footer-bg: #0f172a;
+            --footer-text: #ffffff;
+            --skill-tag-bg: #e2e8f0;
+            --skill-tag-text: #1e293b;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .dark-mode {
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --text-light: #cbd5e1;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --card-bg: #1e293b;
+            --border: #334155;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --footer-bg: #0a0f1a;
+            --footer-text: #f1f5f9;
+            --skill-tag-bg: #334155;
+            --skill-tag-text: #f1f5f9;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        /* ----- NAVIGATION (DESKTOP + MOBILE HAMBURGER) ----- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 60px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        #darkToggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* ----- HAMBURGER MENU (hidden on desktop) ----- */
+        .menu {
+            display: none;
+        }
+
+        /* ----- HERO ----- */
+        .hero {
+            padding: 180px 20px 120px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ----- SECTIONS ----- */
+        .section {
+            padding: 90px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        /* ----- ABOUT (with card & profile) ----- */
+        .about-card {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+        }
+
+        .about-content p {
+            margin: 1rem 0 1.5rem;
+            color: var(--text-light);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a img {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.2s, filter 0.2s;
+            filter: brightness(0) saturate(100%) invert(27%) sepia(95%) saturate(1895%) hue-rotate(210deg) brightness(94%) contrast(101%);
+        }
+
+        .dark-mode .social-icons a img {
+            filter: brightness(0) saturate(100%) invert(70%) sepia(96%) saturate(445%) hue-rotate(185deg) brightness(103%) contrast(101%);
+        }
+
+        .social-icons a:hover img {
+            transform: scale(1.2);
+        }
+
+        /* ----- SKILLS CARDS ----- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            width: 300px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .skill-icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-used {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skills-used span {
+            background: var(--skill-tag-bg);
+            color: var(--skill-tag-text);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ----- EXPERIENCE & PROJECT CARDS ----- */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 0.3rem;
+            font-size: 1.3rem;
+        }
+
+        .card span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        .card ul {
+            padding-left: 1.2rem;
+            margin-top: 0.8rem;
+        }
+
+        .card li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* ----- PORTFOLIO BUTTONS (optional) ----- */
+        .portfolio-showcase {
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .portfolio-button {
+            display: block;
+            width: 280px;
+            height: 360px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 30px -10px rgb(0 0 0 / 0.2);
+        }
+
+        .portfolio-button span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ----- CONTACT FORM ----- */
+        .contact-form {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            color: var(--text);
+            transition: border 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 3rem 20px 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+
+        .cv-button a {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .cv-button a:hover {
+            background: var(--primary-dark);
+        }
+
+        .contact-details p {
+            margin: 0.3rem 0;
+        }
+
+        .contact-details a {
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+
+        .contact-details a:hover {
+            color: white;
+        }
+
+        .footer .social-icons img {
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .footer .social-icons a:hover img {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1e293b;
+            color: #94a3b8;
+        }
+
+        /* ----- RESPONSIVE (MOBILE) ----- */
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+
+            .menu {
+                display: block;
+                background: transparent;
+                border: none;
+                position: fixed;
+                top: 12px;
+                right: 20px;
+                z-index: 2000;
+                width: 45px;
+                height: 45px;
+            }
+
+            .line {
+                fill: none;
+                stroke: var(--text);
+                stroke-width: 6;
+                transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .dark-mode .line {
+                stroke: #f1f5f9;
+            }
+
+            .opened .line1 {
+                stroke-dasharray: 90 207;
+                stroke-dashoffset: -134;
+            }
+            .opened .line2 {
+                stroke-dasharray: 1 60;
+                stroke-dashoffset: -30;
+            }
+            .opened .line3 {
+                stroke-dasharray: 90 207;
+                stroke-dashoffset: -134;
+            }
+
+            nav {
+                justify-content: space-between;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                right: 20px;
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: var(--shadow);
+                width: 220px;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.8rem;
+            }
+
+            .profile-img {
+                width: 130px;
+                height: 130px;
+            }
+
+            .skills-container {
+                gap: 1.2rem;
+            }
+
+            .portfolio-button {
+                width: 260px;
+                height: 340px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Soumyadeep Das</div>
+            <!-- Hamburger button (mobile) -->
+            <button class="menu" onclick="this.classList.toggle('opened'); this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu">
+                <svg width="45" height="45" viewBox="0 0 100 100">
+                    <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                    <path class="line line2" d="M 20,50 H 80" />
+                    <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+                </svg>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="darkToggle" aria-label="Toggle dark mode">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Full‑Stack Software Engineer</h1>
+            <p><strong>Building high‑performance, accessible, and user‑centric web applications with .NET Core & Angular.</strong></p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn">Contact Me</a>
+                <a href="resume (2).pdf" class="btn-outline" download>Download Resume</a>
+            </div>
+        </section>
+
+        <!-- ABOUT (with card & profile) -->
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <div class="about-card">
+                <!-- Replace with your actual profile picture -->
+                <img src="Pi7_Tool_my photo 1.jpg" alt="Soumyadeep Das" class="profile-img">
+                <div class="about-content">
+                    <p style="font-size: 1.2rem; font-weight: 600;">Hi, I'm Soumyadeep 👋</p>
+                    <p>Entry‑level Software Engineer with strong foundations in OOP, data structures, and full‑stack development. Currently working at Fizofy, contributing to production systems, backend APIs using .NET Core, and AI‑powered features. I love turning complex problems into simple, elegant solutions.</p>
+                    <div class="social-icons">
+                        <a href="https://github.com/Soumyadeep7" target="_blank">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+                        </a>
+                        <a href="https://linkedin.com/in/soumyadeep-das" target="_blank">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+                        </a>
+                        <!-- Add more if you like -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS (cards) -->
+        <section id="skills" class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Frontend</h3>
+                    <p>Angular, TypeScript, HTML, CSS, responsive & accessible UI.</p>
+                    <div class="skills-used">
+                        <span>Angular</span>
+                        <span>TypeScript</span>
+                        <span>HTML/CSS</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Backend</h3>
+                    <p>.NET Core, Web API, Entity Framework, RESTful services.</p>
+                    <div class="skills-used">
+                        <span>C#</span>
+                        <span>.NET</span>
+                        <span>EF Core</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>Data & AI</h3>
+                    <p>Python, SQL Server, AI features, data analysis.</p>
+                    <div class="skills-used">
+                        <span>Python</span>
+                        <span>SQL</span>
+                        <span>AI/ML</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Tools & Cloud</h3>
+                    <p>Git, Postman, VS, Azure Fundamentals, SQL Server.</p>
+                    <div class="skills-used">
+                        <span>Git</span>
+                        <span>Azure</span>
+                        <span>Postman</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section">
+            <h2>Professional Experience</h2>
+            <div class="card">
+                <h3>Full‑Stack Engineer — Fizofy</h3>
+                <span>Oct 2025 – Present | India</span>
+                <ul>
+                    <li>Developed RESTful APIs using .NET Core and C#.</li>
+                    <li>Optimized SQL queries, improving average response time by 25%.</li>
+                    <li>Built scalable UI components with Angular 16.</li>
+                    <li>Contributed to AI Diet Planner and chatbot features.</li>
+                    <li>Actively participated in Agile sprints and code reviews.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Data Analytics Intern — IBM SkillBuild</h3>
+                <span>Jun 2024 – Aug 2024 | Remote</span>
+                <ul>
+                    <li>Analyzed workforce and salary datasets using Python (Pandas, Matplotlib).</li>
+                    <li>Created interactive dashboards and visual reports.</li>
+                    <li>Identified gender and employment trends presented to stakeholders.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROJECTS (keep original, enhance with card style) -->
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="card">
+                <h3>🎙️ AI Podcast Generator</h3>
+                <p>Converts YouTube links and PDFs into short AI‑generated podcast episodes. Built with Python (FastAPI), SQL Server, and Angular frontend.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="#" style="color: var(--primary); font-weight: 600;">View on GitHub →</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>📈 Employment Trends Analysis</h3>
+                <p>Statistical analysis project evaluating salary gaps and workforce distribution using Python and data visualization tools (Seaborn, Plotly).</p>
+                <div style="margin-top: 1rem;">
+                    <a href="#" style="color: var(--primary); font-weight: 600;">View on GitHub →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OPTIONAL: PORTFOLIO SHOWCASE (image buttons) – you can remove if not needed -->
+        <section id="featured" class="section portfolio-showcase">
+            <h2>Featured Work</h2>
+            <div class="button-container">
+                <a href="#" class="portfolio-button" style="background-image: url('https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=400');">
+                    <span>AI Podcast Generator</span>
+                </a>
+                <a href="#" class="portfolio-button" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400');">
+                    <span>Employment Trends</span>
+                </a>
+                <a href="#" class="portfolio-button" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400');">
+                    <span>.NET Core API</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <div class="card">
+                <h3>B.Tech in Computer Science</h3>
+                <p>University of Engineering and Management, Kolkata</p>
+                <span>2021 – 2025 | CGPA: 8.41</span>
+            </div>
+            <div class="card">
+                <h3>Class XII</h3>
+                <p>G.B. Memorial Institution (WBCHSE)</p>
+                <span>2019-2021 | Score: 84.2%</span>
+            </div>
+            <div class="card">
+                <h3>Class X</h3>
+                <p>Purba Barisha High School (WBBSE)</p>
+                <span>2008-2018 | Score: 77.57%</span>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS -->
+        <section id="achievements" class="section">
+            <h2>Achievements</h2>
+            <div class="card">
+                <ul>
+                    <li>🏆 Adobe GenSolve Hackathon — Team Byteminds</li>
+                    <li>📝 300+ problems solved on HackerRank (Gold Badge in C#)</li>
+                    <li>⭐ 10+ open‑source contributions on GitHub</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CONTACT FORM -->
+        <section id="contact" class="section">
+            <h2>Get In Touch</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <p style="margin-top: 1.5rem; text-align: center; color: var(--text-light);">
+                    Or reach me directly at <a href="mailto:soumyadeepdas4236@gmail.com">soumyadeepdas4236@gmail.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="cv-button">
+                <a href="resume (2).pdf" download>📄 Download Resume</a>
+            </div>
+            <div class="contact-details">
+                <p>📧 <a href="mailto:soumyadeepdas4236@gmail.com">soumyadeepdas4236@gmail.com</a></p>
+                <p>📞 +91 93304 73012</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://github.com/Soumyadeep7" target="_blank">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+                </a>
+                <a href="https://linkedin.com/in/soumyadeep-das" target="_blank">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 Soumyadeep Das. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ----- DARK MODE TOGGLE with localStorage persistence -----
+        const toggleBtn = document.getElementById('darkToggle');
+        const body = document.body;
+
+        // Check localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.textContent = '☀️';
+        } else {
+            toggleBtn.textContent = '🌙';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            toggleBtn.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // ----- HAMBURGER MENU TOGGLE -----
+        const menuBtn = document.querySelector('.menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked (mobile)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuBtn.classList.remove('opened');
+                });
+            });
+        }
+
+        // ----- CONTACT FORM SIMULATION (replace with real endpoint) -----
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thanks for your message! I’ll get back to you soon.');
+                form.reset();
+            });
+        }
+
+        // ----- SMOOTH SCROLL FOR OLDER BROWSERS (already in CSS) -----
+    </script>
+</body>
+</html>
